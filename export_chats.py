@@ -36,17 +36,34 @@ def get_workspace_storage_dir() -> Path:
 
 def find_workspace_hash_dir(storage_dir: Path) -> Path:
     """Find the workspaceStorage directory for the current workspace."""
-    cwd_str = str(WS_ROOT.resolve())
+    cwd = WS_ROOT.resolve()
+
     for d in storage_dir.iterdir():
         meta = d / "workspace.json"
         if not meta.exists():
             continue
-        data = json.loads(meta.read_text())
-        folder = data.get("folder", "")
-        if folder.endswith(cwd_str):
-            return d
-    raise RuntimeError("VS Code workspace not found")
 
+        try:
+            data = json.loads(meta.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+
+        folder = data.get("folder", "")
+        if not folder:
+            continue
+
+        # Normalize file:// URI
+        if folder.startswith("file://"):
+            from urllib.parse import urlparse, unquote
+            parsed = urlparse(folder)
+            folder_path = Path(unquote(parsed.path)).resolve()
+        else:
+            folder_path = Path(folder).resolve()
+
+        if folder_path == cwd:
+            return d
+
+    raise RuntimeError(f"VS Code workspace not found: {cwd}")
 
 def find_jsonl_files(workspace_dir: Path) -> list[Path]:
     """Return all JSONL files in the workspace storage directory."""
@@ -295,7 +312,7 @@ def parse_session(file_path: Path) -> tuple[list[dict], str | None, dict]:
             title = v.strip()
 
         # Capture result metadata (timings + model details)
-        elif kind == 1 and len(k) == 3 and k[0] == "requests" and k[2] == "result":
+        elif kind == 1 and groups and len(k) == 3 and k[0] == "requests" and k[2] == "result":
             groups[-1]["timings"] = v.get("timings", {})
             groups[-1]["details"] = v.get("details", {})
 
@@ -327,7 +344,7 @@ def parse_session(file_path: Path) -> tuple[list[dict], str | None, dict]:
                 parse_response(request["response"], group["responses"], group["callIds"])
 
         # Continue request parsing
-        elif kind == 2 and k[0] == "requests" and isinstance(v, list):
+        elif kind == 2 and groups and k[0] == "requests" and isinstance(v, list):
             parse_response(v, groups[-1]["responses"], groups[-1]["callIds"])
 
     return groups, title, metadata
