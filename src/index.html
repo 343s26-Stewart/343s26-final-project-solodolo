@@ -3,10 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dawgstagram</title>
-    <link rel="icon" href="https://fav.mhciael.com/🐶">
+    <title>Dial - Music Discovery</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Dawgstagram</h1>
+    <header>
+        <nav>
+            <h1>Dial</h1>
+            <ul>
+                <li><a href="#" class="active" aria-current="page">Search</a></li>
+                <li><a href="#">My Collections</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="search-section">
+            <h2>Discover new music</h2>
+            <div class="search-bar">
+                <label for="search-input" class="sr-only">Search for an artist</label>
+                <input type="text" id="search-input" placeholder="Search for an artist..." aria-describedby="search-help">
+                <button id="search-button" type="button" aria-label="Search">→</button>
+            </div>
+            <p id="search-help" class="sr-only">Type an artist name and press the search button to find music.</p>
+            <div class="results" id="results">
+                <!-- Sample results for initial design -->
+                <article class="artist-card">
+                    <div class="avatar avatar-lumineers">TL</div>
+                    <div class="info">
+                        <h3>The Lumineers</h3>
+                        <p>folk · americana</p>
+                    </div>
+                    <button class="view-btn" type="button">View →</button>
+                </article>
+                <article class="artist-card">
+                    <div class="avatar avatar-502s">T5</div>
+                    <div class="info">
+                        <h3>The 502s</h3>
+                        <p>folk · americana</p>
+                    </div>
+                    <button class="view-btn" type="button">View →</button>
+                </article>
+            </div>
+        </section>
+    </main>
+    <script src="app.js"></script>
 </body>
 </html>

@@ -1,0 +1,255 @@
+/* styles.css - Shared CSS for Dial app */
+
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #000000;
+    background-color: #f8f8f8;
+}
+
+/* Accessibility: Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Header and Navigation */
+header {
+    background-color: #1a1a2e;
+    color: #ffffff;
+    padding: 1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: normal;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+nav a:hover,
+nav a:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+nav a.active {
+    background-color: #534ab7;
+}
+
+/* Main content */
+main {
+    min-height: calc(100vh - 80px); /* Approximate header height */
+    padding: 2rem;
+}
+
+.search-section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.search-section h2 {
+    font-size: 3rem;
+    font-weight: normal;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #000000;
+}
+
+/* Search bar */
+.search-bar {
+    display: flex;
+    margin: 2rem 0;
+    gap: 0.5rem;
+}
+
+#search-input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+#search-input:focus {
+    outline: 2px solid #534ab7;
+    outline-offset: 2px;
+}
+
+#search-button {
+    background-color: #1a1a2e;
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1rem;
+    font-size: 1.25rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#search-button:hover,
+#search-button:focus {
+    background-color: #534ab7;
+}
+
+/* Results */
+.results {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.artist-card {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s;
+}
+
+.artist-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.avatar-lumineers {
+    background-color: #d80073;
+}
+
+.avatar-502s {
+    background-color: #6a00ff;
+}
+
+.info {
+    flex: 1;
+}
+
+.info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    color: #000000;
+}
+
+.info p {
+    margin: 0;
+    color: #cccccc;
+    font-size: 1rem;
+}
+
+.view-btn {
+    background-color: #534ab7;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.view-btn:hover,
+.view-btn:focus {
+    background-color: #3a2a8a;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    nav ul {
+        gap: 1rem;
+    }
+
+    .search-section h2 {
+        font-size: 2rem;
+    }
+
+    .search-bar {
+        flex-direction: column;
+    }
+
+    .artist-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .avatar {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 1rem;
+    }
+
+    .search-section h2 {
+        font-size: 1.5rem;
+    }
+
+    nav h1 {
+        font-size: 1.5rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
