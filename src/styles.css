@@ -35,43 +35,38 @@ header {
 }
 
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     max-width: 1200px;
-    margin: 0 auto;
-}
-
-nav h1 {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: normal;
-}
-
-nav ul {
-    list-style: none;
     display: flex;
+    align-items: center;
+    margin: 0 auto;
     gap: 2rem;
-    margin: 0;
-    padding: 0;
-}
+    
+    & h1 {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: normal;
+        padding-inline: 0.5rem;
+    }
+    
+    & a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 1.25rem;
+        padding: 0.5rem;
+        border-radius: 5px;
+        transition: background-color 0.4s;
 
-nav a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1.5rem;
-    padding: 0.5rem;
-    border-radius: 4px;
-    transition: background-color 0.2s;
-}
+        &:hover,
+        &:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
 
-nav a:hover,
-nav a:focus {
-    background-color: rgba(255, 255, 255, 0.1);
-}
+        &.active {
+            background-color: #534ab7;
+        }
+    }
 
-nav a.active {
-    background-color: #534ab7;
+
 }
 
 /* Main content */
@@ -83,14 +78,14 @@ main {
 .search-section {
     max-width: 800px;
     margin: 0 auto;
-}
 
-.search-section h2 {
-    font-size: 3rem;
-    font-weight: normal;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: #000000;
+    & h2 {
+        font-size: 3rem;
+        font-weight: normal;
+        margin-bottom: 2rem;
+        text-align: center;
+        color: #000000;
+    }
 }
 
 /* Search bar */
@@ -107,15 +102,14 @@ main {
     border-radius: 4px;
     font-size: 1rem;
     font-family: inherit;
-}
 
-#search-input:focus {
-    outline: 2px solid #534ab7;
-    outline-offset: 2px;
+    &:focus {
+        outline: 2px solid #534ab7;
+    }
 }
 
 #search-button {
-    background-color: #1a1a2e;
+    background-color: #534ab7;
     color: #ffffff;
     border: none;
     padding: 0.75rem 1rem;
@@ -123,11 +117,11 @@ main {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s;
-}
 
-#search-button:hover,
-#search-button:focus {
-    background-color: #534ab7;
+    &:hover,
+    &:focus {
+        background-color: #3a2a8a;
+    }
 }
 
 /* Results */
@@ -144,11 +138,11 @@ main {
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.2s;
-}
-
-.artist-card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.4s;
+    cursor: pointer;
+    &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
 }
 
 .avatar {
@@ -158,98 +152,71 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 1.5rem;
     color: #ffffff;
     margin-right: 1rem;
     flex-shrink: 0;
-}
-
-.avatar-lumineers {
-    background-color: #d80073;
-}
-
-.avatar-502s {
-    background-color: #6a00ff;
+    background-color: #534ab7;
 }
 
 .info {
     flex: 1;
+
+    & h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.5rem;
+        font-weight: normal;
+        color: #000000;
+    }
+
+    & p {
+        margin: 0;
+        color: #999999;
+        font-size: 1rem;
+    }
+
 }
 
-.info h3 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.5rem;
-    color: #000000;
-}
-
-.info p {
-    margin: 0;
-    color: #cccccc;
-    font-size: 1rem;
-}
-
-.view-btn {
-    background-color: #534ab7;
-    color: #ffffff;
-    border: none;
+.view-indicator {
+    color: #534ab7;
     padding: 0.5rem 1rem;
     font-size: 1rem;
     border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.view-btn:hover,
-.view-btn:focus {
-    background-color: #3a2a8a;
+    flex-shrink: 0;
 }
 
 /* Responsive design */
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    nav ul {
-        gap: 1rem;
-    }
-
-    .search-section h2 {
-        font-size: 2rem;
-    }
-
-    .search-bar {
-        flex-direction: column;
-    }
-
-    .artist-card {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .avatar {
-        margin-right: 0;
-        margin-bottom: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
+@media (max-width: 786px) {
     main {
         padding: 1rem;
     }
 
+    nav {
+        gap: 0.3rem;
+    }
+
     .search-section h2 {
-        font-size: 1.5rem;
+        font-size: 2.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-section h2 {
+        display: none;
     }
 
-    nav h1 {
-        font-size: 1.5rem;
+    .search-bar {
+        margin: 0 0 1rem 0;
     }
 
-    nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
+    nav {
+        & h1 {
+            font-size: 1.5rem;
+        }
+
+        & a {
+            font-size: 1rem;
+        }
+    } 
 }

@@ -10,10 +10,8 @@
     <header>
         <nav>
             <h1>Dial</h1>
-            <ul>
-                <li><a href="#" class="active" aria-current="page">Search</a></li>
-                <li><a href="#">My Collections</a></li>
-            </ul>
+            <a href="#" class="active" aria-current="page">Search</a>
+            <a href="#">My Collections</a>
         </nav>
     </header>
     <main>
@@ -24,11 +22,11 @@
                 <input type="text" id="search-input" placeholder="Search for an artist..." aria-describedby="search-help">
                 <button id="search-button" type="button" aria-label="Search">→</button>
             </div>
-            <p id="search-help" class="sr-only">Type an artist name and press the search button to find music.</p>
+            <p id="search-help" class="sr-only">Type an artist name and press the search button to find artists' information.</p>
             <div class="results" id="results">
                 <!-- Sample results for initial design -->
                 <article class="artist-card">
-                    <div class="avatar avatar-lumineers">TL</div>
+                    <div class="avatar">TL</div>
                     <div class="info">
                         <h3>The Lumineers</h3>
                         <p>folk · americana</p>
@@ -36,7 +34,7 @@
                     <button class="view-btn" type="button">View →</button>
                 </article>
                 <article class="artist-card">
-                    <div class="avatar avatar-502s">T5</div>
+                    <div class="avatar">T5</div>
                     <div class="info">
                         <h3>The 502s</h3>
                         <p>folk · americana</p>
