@@ -39,19 +39,19 @@ nav {
     max-width: 1200px;
     display: flex;
     align-items: center;
-    
+
     & .nav-divider {
         border-right: 2px solid #cccccc;
         margin-right: 0.5rem;
     }
-    
+
     & h1 {
         margin: 0;
         font-size: 2rem;
         font-weight: normal;
         padding: 0 2rem;
     }
-    
+
     & a {
         color: #ffffff;
         text-decoration: none;
@@ -61,13 +61,21 @@ nav {
         border-radius: 5px;
         transition: background-color 0.4s;
 
-        &:hover {
+        &:hover,
+        &:focus {
             background-color: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+
+        /* Back link pushed to the far right */
+        &.back-link {
+            margin-left: auto;
+            margin-right: 1rem;
         }
 
         &.active {
             position: relative;
-            
+
             &::after {
                 content: '';
                 position: absolute;
@@ -79,9 +87,34 @@ nav {
                 background-color: #534ab7;
             }
         }
-
     }
 
+    /* Export/Import buttons pushed to the far right on the Collections page */
+    & .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-left: auto;
+        margin-right: 1rem;
+    }
+
+    & .nav-btn {
+        background: none;
+        border: 1px solid #cccccc;
+        color: #ffffff;
+        font-family: inherit;
+        font-size: 1rem;
+        padding: 0.35rem 0.85rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover,
+        &:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+    }
 
 }
 
@@ -135,8 +168,10 @@ main {
     cursor: pointer;
     transition: background-color 0.2s;
 
-    &:hover {
+    &:hover,
+    &:focus {
         background-color: #1a1a2e;
+        outline: none;
     }
 }
 
@@ -156,9 +191,19 @@ main {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.4s;
     cursor: pointer;
-    &:hover {
+
+    &:hover,
+    &:focus {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        outline: 2px solid #534ab7;
     }
+}
+
+.view-indicator {
+    color: #534ab7;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    flex-shrink: 0;
 }
 
 .avatar {
@@ -223,8 +268,10 @@ main {
         cursor: pointer;
         transition: background-color 0.2s;
 
-        &:hover {
+        &:hover,
+        &:focus {
             background-color: #bbbbbb;
+            outline: none;
         }
 
         &.active {
@@ -236,7 +283,228 @@ main {
 }
 
 
+/* ── Artist view ────────────────────────────────────────────────────────── */
+
+.artist-view {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Dark header band matching the design sketch */
+.artist-header {
+    background-color: #16213e;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.artist-avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.artist-header-info {
+    & h2 {
+        margin: 0 0 0.75rem 0;
+        font-size: 2rem;
+        font-weight: normal;
+        color: #ffffff;
+    }
+}
+
+.genre-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* Genre pills use an even-lighter navy per the design sketch annotation */
+.genre-tag {
+    background-color: #2e3a68;
+    color: #cccccc;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+/* Two-column layout: collection panel on left, discography on right */
+.artist-body {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.collection-panel,
+.discography-panel {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    & h3 {
+        margin: 0 0 1rem 0;
+        font-weight: normal;
+        font-size: 1.25rem;
+    }
+}
+
+.collection-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    & select {
+        width: 100%;
+        padding: 0.6rem 0.75rem;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 1rem;
+        /* Custom arrow via inline SVG; appearance: none removes the native one */
+        appearance: none;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 0.75rem center;
+        cursor: pointer;
+
+        &:focus {
+            outline: 2px solid #534ab7;
+        }
+    }
+
+    & textarea {
+        width: 100%;
+        padding: 0.6rem 0.75rem;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 1rem;
+        resize: vertical;
+        min-height: 80px;
+
+        &:focus {
+            outline: 2px solid #534ab7;
+        }
+    }
+
+    & button {
+        background-color: #534ab7;
+        color: #ffffff;
+        border: none;
+        padding: 0.75rem;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover,
+        &:focus {
+            background-color: #3a2a8a;
+            outline: none;
+        }
+    }
+}
+
+.collection-saved-msg {
+    margin: 0;
+    color: #4fd18b;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.discography-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.discography-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f0f0f0;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    & .release-title {
+        font-size: 1rem;
+        color: #000000;
+    }
+
+    & .release-meta {
+        font-size: 0.85rem;
+        color: #999999;
+        margin-top: 0.1rem;
+    }
+}
+
+/* ── Collections page card extras ───────────────────────────────────────── */
+
+/* Action buttons on collection cards (edit, delete) */
+.card-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999999;
+    font-size: 1rem;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: color 0.2s;
+
+    &:hover,
+    &:focus {
+        color: #534ab7;
+        outline: none;
+    }
+
+    &.delete:hover,
+    &.delete:focus {
+        color: #cc3333;
+    }
+}
+
+/* Collection status badge shown on cards in My Collections */
+.collection-badge {
+    background-color: #534ab7;
+    color: #ffffff;
+    padding: 0.2rem 0.6rem;
+    border-radius: 50rem;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-top: 0.4rem;
+}
+
 /* Responsive design */
+
+/* Stack artist body panels and center the header on narrow screens */
+@media (max-width: 700px) {
+    .artist-body {
+        grid-template-columns: 1fr;
+    }
+
+    .artist-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .genre-tags {
+        justify-content: center;
+    }
+}
+
 @media (max-width: calc(800px + 4rem)) {
     main {
         padding: 1rem;
@@ -262,7 +530,7 @@ main {
 }
 
 @media (max-width: 480px) {
-    .search-section h2 {
+    .view-section h2 {
         display: none;
     }
 

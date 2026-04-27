@@ -10,12 +10,14 @@
     <header>
         <nav>
             <div class="nav-divider"><h1>Dial</h1></div>
-            <a href="#" class="active" aria-current="page">Search</a>
-            <a href="collections.html">My Collections</a>
+            <a href="#" id="nav-search" class="active" aria-current="page">Search</a>
+            <a href="collections.html" id="nav-collections">My Collections</a>
+            <!-- Back link is hidden until the artist view is open -->
+            <a href="#" id="nav-back" class="back-link" hidden>← Back to results</a>
         </nav>
     </header>
     <main>
-        <section class="view-section">
+        <section class="view-section" id="search-view">
             <h2>Discover new music</h2>
             <div class="search-bar">
                 <label for="search-input" class="sr-only">Search for an artist</label>
@@ -24,25 +26,11 @@
             </div>
             <p id="search-help" class="sr-only">Type an artist name and press the search button to find artists' information.</p>
             <div class="results" id="results">
-                <!-- Sample results for initial design -->
-                <article class="artist-card">
-                    <div class="avatar">TL</div>
-                    <div class="info">
-                        <h3>The Lumineers</h3>
-                        <p>folk · americana</p>
-                    </div>
-                    <button class="view-btn" type="button">View →</button>
-                </article>
-                <article class="artist-card">
-                    <div class="avatar">T5</div>
-                    <div class="info">
-                        <h3>The 502s</h3>
-                        <p>folk · americana</p>
-                    </div>
-                    <button class="view-btn" type="button">View →</button>
-                </article>
+                <p>Enter an artist name to search.</p>
             </div>
         </section>
+
+        <!-- Artist detail view is built and injected by search.js on first use -->
     </main>
     <script src="search.js"></script>
 </body>
