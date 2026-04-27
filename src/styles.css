@@ -34,15 +34,16 @@ header {
     padding: 1rem 0;
 }
 
-.nav-divider {
-    border-right: 2px solid #cccccc;
-    margin-right: 0.5rem;
-}
 
 nav {
     max-width: 1200px;
     display: flex;
     align-items: center;
+    
+    & .nav-divider {
+        border-right: 2px solid #cccccc;
+        margin-right: 0.5rem;
+    }
     
     & h1 {
         margin: 0;
@@ -60,8 +61,7 @@ nav {
         border-radius: 5px;
         transition: background-color 0.4s;
 
-        &:hover,
-        &:focus {
+        &:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
 
@@ -91,7 +91,7 @@ main {
     padding: 2rem;
 }
 
-.search-section {
+.view-section {
     max-width: 800px;
     margin: 0 auto;
 
@@ -113,9 +113,9 @@ main {
 
 #search-input {
     flex: 1;
-    padding: 0.75rem;
+    padding: 1rem;
     border: 1px solid #cccccc;
-    border-radius: 4px;
+    border-radius: 50rem;
     font-size: 1rem;
     font-family: inherit;
 
@@ -128,15 +128,15 @@ main {
     background-color: #534ab7;
     color: #ffffff;
     border: none;
-    padding: 0.75rem 1rem;
+    padding: auto;
+    width: 3.25rem;
     font-size: 1.25rem;
-    border-radius: 4px;
+    border-radius: 50rem;
     cursor: pointer;
     transition: background-color 0.2s;
 
-    &:hover,
-    &:focus {
-        background-color: #3a2a8a;
+    &:hover {
+        background-color: #1a1a2e;
     }
 }
 
@@ -191,19 +191,53 @@ main {
         color: #999999;
         font-size: 1rem;
     }
-
 }
 
-.view-indicator {
-    color: #534ab7;
-    padding: 0.5rem 1rem;
+/* Tag styling for collection statuses */
+.tag {
+    background-color: #f0f0f0;
+    color: #666666;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50rem;
     font-size: 1rem;
-    border-radius: 4px;
-    flex-shrink: 0;
+    display: inline-block;
 }
+
+.empty-state {
+    text-align: center;
+    color: #666666;
+    padding: 2rem;
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+    
+    & .tag {
+        border: 1px solid #cccccc;
+        padding: 0.5rem 1rem;
+        font-size: 1.15rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: #bbbbbb;
+        }
+
+        &.active {
+            background-color: #534ab7;
+            color: #ffffff;
+            border-color: #534ab7;
+        }
+    }
+}
+
 
 /* Responsive design */
-@media (max-width: 786px) {
+@media (max-width: calc(800px + 4rem)) {
     main {
         padding: 1rem;
     }
@@ -222,7 +256,7 @@ main {
         }
     }
 
-    .search-section h2 {
+    .view-section h2 {
         font-size: 2.25rem;
     }
 }
@@ -245,4 +279,55 @@ main {
             font-size: 1rem;
         }
     } 
+}
+
+/*
+TODO: Make the loader better
+*/
+
+/* Loading indicator */
+.loader {
+    width: 2.5rem;
+    aspect-ratio: 1;
+    display: grid;
+    position: relative;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 50% 50%, #1a1a2e 0 34%, #1a1a2e 0 35%, #555555 55% 60%, transparent 0),
+        repeating-conic-gradient(
+            from -8deg,
+            #f8f8f8 16deg 20deg,
+            transparent 20deg 36deg,
+            #f8f8f8 36deg 40deg,
+            transparent 40deg 56deg,
+            #f8f8f8 56deg 60deg,
+            transparent 60deg 76deg,
+            #f8f8f8 76deg 80deg,
+            transparent 80deg 96deg,
+            #f8f8f8 96deg 100deg,
+            transparent 100deg 116deg,
+            #f8f8f8 116deg 120deg,
+            transparent 120deg 256deg
+        ),
+        radial-gradient(circle farthest-side at 50% 50%, #5a5a5a 0 100%);
+    background-repeat: no-repeat;
+    animation: dial 10s ease-in-out infinite;
+}
+
+@keyframes dial {
+    8% {transform: rotate(90deg)}
+    14% {transform: rotate(0.20turn)}
+    20% {transform: rotate(0.22turn)}
+    28% {transform: rotate(-0.15turn)}
+    34% {transform: rotate(-0.1turn)}
+    40% {transform: rotate(-0.12turn)}
+    48% {transform: rotate(-0.6turn)}
+    54% {transform: rotate(-0.55turn)}
+    60% {transform: rotate(-0.57turn)}
+    68% {transform: rotate(-0.35turn)}
+    74% {transform: rotate(-0.4turn)}
+    80% {transform: rotate(-0.37turn)}
+    88% {transform: rotate(0.03turn)}
+    94% {transform: rotate(-0.02turn)}
+    100% {transform: rotate(0turn)}
 }

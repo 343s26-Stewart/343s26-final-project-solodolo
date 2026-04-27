@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Collections - Dial</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-divider"><h1>Dial</h1></div>
+            <a href="index.html">Search</a>
+            <a href="#" class="active" aria-current="page">My Collections</a>
+        </nav>
+    </header>
+    <main>
+        <section class="view-section">
+            <h2>My Collections</h2>
+            <div class="filters">
+                <div class="filter-buttons">
+                    <button class="tag active" data-collection="all">All</button>
+                    <button class="tag" data-collection="Want to Explore">Want to Explore</button>
+                    <button class="tag" data-collection="Listening">Listening</button>
+                    <button class="tag" data-collection="Listened">Listened</button>
+                </div>
+            </div>
+            <div class="results" id="results">
+                <!-- Dynamically populated from localStorage -->
+            </div>
+        </section>
+    </main>
+    <script src="collections.js"></script>
+</body>
+</html>
