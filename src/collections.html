@@ -9,27 +9,30 @@
 <body>
     <header>
         <nav>
-            <div class="nav-divider"><h1>Dial</h1></div>
+            <div class="nav-divider"><h1><a href="about.html">Dial</a></h1></div>
             <a href="index.html">Search</a>
             <a href="#" class="active" aria-current="page">My Collections</a>
+            <!-- Export/Import per design sketch; hidden file input used for import -->
+            <div class="nav-actions">
+                <button id="export-btn" type="button" class="nav-btn">Export</button>
+                <button id="import-btn" type="button" class="nav-btn">Import</button>
+                <input type="file" id="import-input" accept=".json" class="sr-only" aria-label="Import collections JSON file">
+            </div>
         </nav>
     </header>
     <main>
         <section class="view-section">
             <h2>My Collections</h2>
-            <div class="filters">
-                <div class="filter-buttons">
-                    <button class="tag active" data-collection="all">All</button>
-                    <button class="tag" data-collection="Want to Explore">Want to Explore</button>
-                    <button class="tag" data-collection="Listening">Listening</button>
-                    <button class="tag" data-collection="Listened">Listened</button>
-                </div>
-            </div>
-            <div class="results" id="results">
-                <!-- Dynamically populated from localStorage -->
-            </div>
+            <!-- Filter buttons: dynamically populated from collections -->
+            <div class="filter-buttons" id="filter-buttons"></div>
+            <!-- Collection manager: toggled by the Edit button in the filter row -->
+            <div class="collections-manager" id="collections-manager" hidden></div>
+            <!-- Artist cards matching the active filter -->
+            <div class="results" id="results"></div>
         </section>
     </main>
+    <script src="utils.js"></script>
+    <script src="collections-store.js"></script>
     <script src="collections.js"></script>
 </body>
 </html>

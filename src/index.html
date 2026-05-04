@@ -9,9 +9,9 @@
 <body>
     <header>
         <nav>
-            <div class="nav-divider"><h1>Dial</h1></div>
+            <div class="nav-divider"><h1><a href="about.html">Dial</a></h1></div>
             <a href="#" id="nav-search" class="active" aria-current="page">Search</a>
-            <a href="collections.html" id="nav-collections">My Collections</a>
+            <a href="collections.html">My Collections</a>
             <!-- Back link is hidden until the artist view is open -->
             <a href="#" id="nav-back" class="back-link" hidden>← Back to results</a>
         </nav>
@@ -25,13 +25,15 @@
                 <button id="search-button" type="button" aria-label="Search">→</button>
             </div>
             <p id="search-help" class="sr-only">Type an artist name and press the search button to find artists' information.</p>
-            <div class="results" id="results">
-                <p>Enter an artist name to search.</p>
-            </div>
+            <ul class="results" id="results">
+            </ul>
+            <p>Enter an artist name to search.</p>
         </section>
 
         <!-- Artist detail view is built and injected by search.js on first use -->
     </main>
+    <script src="utils.js"></script>
+    <script src="collections-store.js"></script>
     <script src="search.js"></script>
 </body>
 </html>
